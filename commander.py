@@ -5,35 +5,37 @@ Usage:
     from commander import get_command
     command = get_command()
 """
-import maya
+import datetime
+import time
 from telethon import TelegramClient
-
 from logger import *
 
 # Create a Telegram Application and paste the
 # APP_ID and API_HASH here
-APP_ID = 249119
-API_HASH = '8d96587d6cfe9c1c79850a84a6340dc7'
+APP_ID = 266606
+API_HASH = '3a0c50e76246f51e414f1e3a7c5fad53'
 
 
 class IFTTTClient:
     def __init__(self, api_id=APP_ID, api_hash=API_HASH):
-        self.latest_msg_date = maya.now()
+        # self.latest_msg_date = maya.now()
+        self.latest_msg_date = datetime.datetime.now()
         logging.debug(f'set latest msg date to - {self.latest_msg_date}')
 
         logging.info('starting telegram client')
-        self.client = TelegramClient('session_name', api_id, api_hash)
+        self.client = TelegramClient('session_id', api_id, api_hash)
         self.client.start()
+        self.latest_msg = self.client.get_messages('IFTTT')[0].message
 
     def get_latest_command(self):
         logging.debug('getting message history')
-        msg = self.client.get_message_history('IFTTT')[0]
-        date = maya.MayaDT.from_datetime(msg.date)
-        if date > self.latest_msg_date:
+        msg = self.client.get_messages('IFTTT')[0]
+
+        if self.latest_msg != msg.message:
             logging.debug(f'new msg found - {repr(msg.message)}')
 
-            self.latest_msg_date = date
-            logging.debug(f'set latest msg date to - {self.latest_msg_date}')
+            self.latest_msg = msg.message
+            logging.debug('set latest msg date to -')
 
             return msg.message
         logging.debug('no new msg found')
@@ -55,4 +57,4 @@ def get_command():
         cmd = client.get_latest_command()
         if cmd:
             return cmd
-        maya.time.sleep(1)
+        time.sleep(1)
