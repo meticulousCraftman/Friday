@@ -1,4 +1,5 @@
 # multiflix
+### Readme is for the pre-forked version. Readme will be updated soon
 A content download system that accepts commands in natural language (e.g. `download some popular movies`)
 
 ## Installation 
