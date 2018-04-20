@@ -10,9 +10,14 @@ from telethon import TelegramClient
 
 from logger import *
 
+# Create a Telegram Application and paste the
+# APP_ID and API_HASH here
+APP_ID = 249119
+API_HASH = '8d96587d6cfe9c1c79850a84a6340dc7'
+
 
 class IFTTTClient:
-    def __init__(self, api_id=196708, api_hash='f0c865a3ecc24c4af25dfae27d475938'):
+    def __init__(self, api_id=APP_ID, api_hash=API_HASH):
         self.latest_msg_date = maya.now()
         logging.debug(f'set latest msg date to - {self.latest_msg_date}')
 
