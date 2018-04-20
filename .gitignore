@@ -2,5 +2,6 @@
 __pycache__/
 telegram_bot.log
 session_id.session
-session_name.session.session
+session_name.session
+Pipfile
 venv/
