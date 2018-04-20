@@ -8,8 +8,9 @@ Working:
 """
 if __name__ == '__main__':
     from logger import *
-    from components.notifier import notify
     from commander import get_command
+    from service_handler import serve
+
     # from content_retriever import get_content
     # from content_provider import get_download_url
     # from downloader import start_download
@@ -17,9 +18,11 @@ if __name__ == '__main__':
     while True:
         try:
             cmd = get_command()
+            cmd = cmd.strip()
 
             logging.info(f'Got command {repr(cmd)}')
-            notify(f'Received a command from Google Assistant: {cmd}')
+            CONTEXT = {}
+            serve(cmd, CONTEXT)
 
             # content = get_content(cmd)
             # logging.info(f'Got content {repr(content)}')
