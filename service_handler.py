@@ -10,11 +10,13 @@ from logger import *
 
 from services import notification
 from services import downloader
+from services import speak
 
 
 SERVICES = [
     [r'notify (.*)', notification],
-    [r'download (.*)', downloader]
+    [r'download (.*)', downloader],
+    [r'speak (.*)', speak]
 ]
 
 
