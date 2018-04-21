@@ -1,5 +1,7 @@
 from components.notifier import notify
 
+NAME = "Notification"
 
-def serve(command, context):
+
+def serve(command, CONTEXT):
     notify(command)
