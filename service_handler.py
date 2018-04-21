@@ -9,19 +9,21 @@ import re
 from logger import *
 
 from services import notification
+from services import downloader
 
 
 SERVICES = [
-    [r'notify (.*)', notification.serve]
+    [r'notify (.*)', notification],
+    [r'download (.*)', downloader]
 ]
 
 
 def serve(command, CONTEXT):
-    for pattern, action in SERVICES:
+    for pattern, module in SERVICES:
         match = re.match(pattern, command)
         if match:
-            logging.info(f'Found a service for the command: {command}')
+            logging.info(f'Service {module.NAME} found')
             result = match.group(1)
-            action(result, CONTEXT)
+            module.serve(result, CONTEXT)
         else:
-            logging.info('No service found for the given command')
+            logging.info(f'Service {module.NAME} does not serve this command.')
