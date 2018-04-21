@@ -5,3 +5,4 @@ session_id.session
 session_name.session
 Pipfile
 venv/
+temp/
