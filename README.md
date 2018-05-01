@@ -1,5 +1,5 @@
-# Donna
-A Google Assistant based assistant that forwards the commands from Google Assistant to your desktop. (e.g. `Donna shutdown my laptop` or `Donna put my computer to sleep`).
+# Friday
+A Google Assistant based assistant that forwards the commands from Google Assistant to your desktop. (e.g. `Friday notify my laptop` or `Friday speak Hello`).
 
 ## Installation 
 ### Basic functionality
@@ -10,7 +10,7 @@ pip install -r requirements.txt
 
 
 ### IFTTT Setup (with telegram)
-Open [this](https://ifttt.com/applets/71095871d-if-you-say-pirate-popular-then-send-message-to-private-chat-with-ifttt) applet with a Google Account. Authorize google assistant and telegram.
+Open [this](https://ifttt.com/applets/71095871d-if-you-say-pirate-popular-then-send-message-to-private-chat-with-ifttt) applet with a Google Account. Authorize google assistant and telegram. Go ahead to edit the IFTTT applet and remove the text "to Telegram" to ""Friday".
 
 ### Telegram API Keys
 Open [this](my.telegram.org) link and login with your telegram account.
