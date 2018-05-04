@@ -11,9 +11,6 @@ if __name__ == '__main__':
     from commander import get_command
     from service_handler import serve
 
-    # from content_retriever import get_content
-    # from content_provider import get_download_url
-    # from downloader import start_download
 
     while True:
         try:
@@ -24,14 +21,7 @@ if __name__ == '__main__':
             CONTEXT = {}
             serve(cmd, CONTEXT)
 
-            # content = get_content(cmd)
-            # logging.info(f'Got content {repr(content)}')
-            #
-            # magnet = get_download_url(content)
-            # logging.info(f'Got download url {magnet}')
-            #
-            # start_download(magnet)
-            # logging.info('Started download')
+
         except KeyboardInterrupt:
             logging.info('exiting!')
             break
