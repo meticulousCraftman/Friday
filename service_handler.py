@@ -6,17 +6,23 @@ USUAGE:
 """
 
 import re
-from logger import *
+from logger import logging
 
 from services import notification
 from services import downloader
 from services import speak
+from services import shutdown
 
 
 SERVICES = [
     [r'notify (.*)', notification],
     [r'download (.*)', downloader],
     [r'speak (.*)', speak],
+
+    [r'shutdown my laptop', shutdown],
+    [r'shutdown my computer', shutdown],
+    [r'shutdown my pc', shutdown],
+    
 ]
 
 

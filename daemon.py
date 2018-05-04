@@ -7,7 +7,7 @@ Working:
     repeat
 """
 if __name__ == '__main__':
-    from logger import *
+    from logger import logging
     from commander import get_command
     from service_handler import serve
 
