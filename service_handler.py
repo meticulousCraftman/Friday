@@ -32,11 +32,17 @@ def serve(command, CONTEXT):
     
     for pattern, module in SERVICES:
         match = re.match(pattern, command)
-        if match:
+
+        if pattern == command:
+            logging.info(f'Service {module.NAME} found')
+            module.serve(command, CONTEXT)
+
+        elif match:
             logging.info(f'Service {module.NAME} found')
             result = match.group(1)
             module.serve(result, CONTEXT)
-            break
+
+        break
     
     # For loop else clause
     else:   
