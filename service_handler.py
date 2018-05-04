@@ -7,11 +7,13 @@ USUAGE:
 
 import re
 from logger import logging
+import settings
 
 from services import notification
 from services import downloader
 from services import speak
 from services import shutdown
+
 
 
 SERVICES = [
@@ -22,16 +24,21 @@ SERVICES = [
     [r'shutdown my laptop', shutdown],
     [r'shutdown my computer', shutdown],
     [r'shutdown my pc', shutdown],
-    
+
 ]
 
 
 def serve(command, CONTEXT):
+    
     for pattern, module in SERVICES:
         match = re.match(pattern, command)
         if match:
             logging.info(f'Service {module.NAME} found')
             result = match.group(1)
             module.serve(result, CONTEXT)
-        else:
-            logging.info(f'Service {module.NAME} does not serve this command.')
+            break
+    
+    # For loop else clause
+    else:   
+        logging.info(f'No service found that completes the request')
+        CONTEXT['telegramClient'].send_message(settings.REPLY_TELEGRAM_USERNAME, 'Unable to find a service that fulfills that request.')

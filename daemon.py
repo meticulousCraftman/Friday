@@ -14,14 +14,14 @@ if __name__ == '__main__':
 
     while True:
         try:
-            cmd = get_command()
-            cmd = cmd.strip()
-
-            logging.info(f'Got command {repr(cmd)}')
-            CONTEXT = {}
-            serve(cmd, CONTEXT)
+            cmd, CONTEXT = get_command()
+            
+            if len(cmd) > 0 and len(CONTEXT) > 0:
+                cmd = cmd.strip()
+                logging.info(f'Got command {repr(cmd)}')
+                serve(cmd, CONTEXT)
 
 
         except KeyboardInterrupt:
-            logging.info('exiting!')
+            logging.info('Exiting!')
             break

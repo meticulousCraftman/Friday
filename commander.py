@@ -8,7 +8,7 @@ Usage:
 import datetime
 import time
 from telethon import TelegramClient
-from logger import *
+from logger import logging
 
 # Create a Telegram Application and paste the
 # APP_ID and API_HASH here
@@ -19,11 +19,13 @@ API_HASH = '3a0c50e76246f51e414f1e3a7c5fad53'
 class IFTTTClient:
     def __init__(self, api_id=APP_ID, api_hash=API_HASH):
         # self.latest_msg_date = maya.now()
+        self.CONTEXT = {}
         self.latest_msg_date = datetime.datetime.now()
         logging.debug(f'set latest msg date to - {self.latest_msg_date}')
 
         logging.info('starting telegram client')
         self.client = TelegramClient('session_id', api_id, api_hash)
+        self.CONTEXT['telegramClient'] = self.client
         self.client.start()
         self.latest_msg = self.client.get_messages('IFTTT')[0].message
 
@@ -37,8 +39,10 @@ class IFTTTClient:
             self.latest_msg = msg.message
             logging.debug('set latest msg date to -')
 
-            return msg.message
+            return (msg.message, self.CONTEXT,)
+        
         logging.debug('no new msg found')
+        return ("", {})
 
 
 client = IFTTTClient()
@@ -49,12 +53,11 @@ def get_command():
     """
     Get a command from some source (E.g. IFTTT)
     This function is supposed to block until a command can be issued
-
-    Returns:
-        the command as `str`
     """
     while True:
-        cmd = client.get_latest_command()
+        cmd, CONTEXT = client.get_latest_command()
         if cmd:
-            return cmd
+            return (cmd, CONTEXT)
+        
         time.sleep(1)
+        return ("", {})date
