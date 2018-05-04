@@ -60,4 +60,4 @@ def get_command():
             return (cmd, CONTEXT)
         
         time.sleep(1)
-        return ("", {})date
+        return ('', {},)
