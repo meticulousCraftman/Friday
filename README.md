@@ -1,5 +1,14 @@
 # Friday
-A Google Assistant based assistant that forwards the commands from Google Assistant to your desktop. (e.g. `Friday notify my laptop` or `Friday speak Hello`).
+An assistant that does things elegantly.
+
+
+> The assistant is being redesigned from ground up.
+>
+> The program is not working right now.
+
+
+<hr/>
+
 
 ## Installation 
 ### Basic functionality
