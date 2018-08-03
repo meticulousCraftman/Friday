@@ -1,3 +1,7 @@
+"""
+Dependencies: mpg123 - a command line tool
+"""
+
 from gtts import gTTS
 import subprocess
 
