@@ -8,6 +8,7 @@ ACTIVATION = [
 
 NAME = "Shutdown"
 
-def serve(command, CONTEXT):
+
+def serve(command, context):
     # Shutdown the computer immediately
     subprocess.call(["shutdown", "-s", "-t", "0"])
