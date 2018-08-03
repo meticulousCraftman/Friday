@@ -7,7 +7,6 @@ USUAGE:
 
 import re
 from logger import logging
-import telepot
 
 from services import notification
 from services import downloader
@@ -28,14 +27,14 @@ SERVICES = [
 
 
 def serve(msg, context):
-    command = msg['text']
+    command = msg
 
     for pattern, module in SERVICES:
         match = re.match(pattern, command)
 
         if pattern == command:
             logging.info(f'Service {module.NAME} found')
-            module.serve(command, CONTEXT)
+            module.serve(command, context)
 
         elif match:
             logging.info(f'Service {module.NAME} found')
@@ -47,5 +46,4 @@ def serve(msg, context):
     # For loop else clause
     else:   
         logging.info(f'No service found that completes the request')
-        content_type, chat_type, chat_id = telepot.glance(msg)
-        CONTEXT['TelegramBot'].sendMessage(chat_id, 'No command found that caters your need.')
+        print("[*] No matching command found.")
