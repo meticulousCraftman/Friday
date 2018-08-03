@@ -1,12 +1,4 @@
-"""
-Handles which module will serve the incoming command
-USUAGE:
-    from service_handler import serve
-    serve(text_command)
-"""
-
 import re
-from logger import logging
 
 from services import notification
 from services import downloader
@@ -33,17 +25,14 @@ def serve(msg, context):
         match = re.match(pattern, command)
 
         if pattern == command:
-            logging.info(f'Service {module.NAME} found')
             module.serve(command, context)
 
         elif match:
-            logging.info(f'Service {module.NAME} found')
             result = match.group(1)
             module.serve(result, context)
 
         break
     
     # For loop else clause
-    else:   
-        logging.info(f'No service found that completes the request')
+    else:
         print("[*] No matching command found.")
