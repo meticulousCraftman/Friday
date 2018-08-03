@@ -7,21 +7,30 @@ Working:
     repeat
 """
 if __name__ == '__main__':
+    import sys
+    import time
+    import settings
+    import telepot
     from logger import logging
-    from commander import get_command
     from service_handler import serve
 
+    CONTEXT = {}
+    TelegramBot = telepot.Bot(settings.TELEGRAM_BOT_TOKEN)
+    CONTEXT['TelegramBot'] = TelegramBot
+ 
+ 
+    def handler(msg):
+        text = msg['text']
+        logging.info(f'Got command {repr(text)}')
+        serve(msg, CONTEXT)
+    try:
+        TelegramBot.message_loop(handler)
 
-    while True:
-        try:
-            cmd, CONTEXT = get_command()
-            
-            if len(cmd) > 0 and len(CONTEXT) > 0:
-                cmd = cmd.strip()
-                logging.info(f'Got command {repr(cmd)}')
-                serve(cmd, CONTEXT)
-
-
-        except KeyboardInterrupt:
-            logging.info('Exiting!')
-            break
+        print('Listening....')
+        
+        # Keep the progarm running
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print('Byeeeee')
+        sys.exit(0)
