@@ -1,17 +1,15 @@
 import subprocess
 import os
 
-from logger import *
-from components.notifier import notify
+from .notification import notify
 
 NAME = "Downloader"
 
 
-def serve(link, CONTEXT):
+def serve(link, context):
     os.chdir('/home/flash/Downloads')
     link = str(link)
     link = link.split(" ")
     link = "".join(link)
-    logging.info(f'Downloading from the link : {link}')
     subprocess.call(['wget', f'{link}'])
     notify("Download has been started.")
