@@ -1,7 +1,13 @@
-from components.notifier import notify
+# TODO make a system independent notification manager.
+
+import subprocess
 
 NAME = "Notification"
 
 
-def serve(command, CONTEXT):
+def notify(text):
+    subprocess.call(['notify-send', f'"{text}"'])
+
+
+def serve(command, context):
     notify(command)
