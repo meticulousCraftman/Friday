@@ -9,12 +9,22 @@ An assistant that does things elegantly.
 
 <hr/>
 
+## Overview
+You send voice commands using Google Assistant, the commands are then relayed to the python scripts using IFTTT. An IFTTT applet is used to
+send Google Assistant voice command over telegram. 
+The scripts keep looking for incoming commands and finally run whatever
+command that was recieved.
 
 ## Installation 
-### Basic functionality
+### Create a Virutal Env
+```console
+foo@bar:~$ virutalenv -p python3 venv
+foo@bar:~$ source venv/bin/activate
 ```
-https://github.com/meticulousCraftman/multiflix.git
-pip install -r requirements.txt
+
+### Install requirements
+```console
+foo@bar:~$ pip install -r requirements.txt
 ```
 
 
